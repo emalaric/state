@@ -18,12 +18,22 @@ export default function App() {
           }))
   }
 
+  const handleChangeFunction = (event) => {
+      setKorisnici(korisnici.map((korisnik) => {
+        if (korisnik.name === event.target.placeholder)
+        {
+          return {...korisnik, name: event.target.value}
+        }
+        return {...korisnik}
+      }))
+  }
+
   return (
     <>
       <h1>State</h1>
-      <UserClass name={korisnici[0].name} years={korisnici[0].years}/>
-      <UserFunction name={korisnici[1].name} years={korisnici[1].years}/>
-      <UserChildren name={korisnici[2].name} years={korisnici[2].years}><p>{naziv}</p></UserChildren>
+      <UserClass name={korisnici[0].name} years={korisnici[0].years} handleChange={handleChangeFunction}/>
+      <UserFunction name={korisnici[1].name} years={korisnici[1].years} handleChange={handleChangeFunction}/>
+      <UserChildren name={korisnici[2].name} years={korisnici[2].years} handleChange={handleChangeFunction}><p>{naziv}</p></UserChildren>
       <button onClick={promjeniGodine}>Promjeni godine</button>
     </>
   )
